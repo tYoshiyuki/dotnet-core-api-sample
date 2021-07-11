@@ -3,10 +3,15 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
+using NSwag.Annotations;
 
 namespace DotNetCoreApiSample.Api.Controllers
 {
+    /// <summary>
+    /// WeatherForecastController です。
+    /// </summary>
     [ApiController]
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
@@ -18,12 +23,21 @@ namespace DotNetCoreApiSample.Api.Controllers
 
         private readonly ILogger<WeatherForecastController> _logger;
 
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        /// <param name="logger"></param>
         public WeatherForecastController(ILogger<WeatherForecastController> logger)
         {
             _logger = logger;
         }
 
+        /// <summary>
+        /// WeatherForecast を取得します。
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
+        [SwaggerResponse(HttpStatusCode.OK, typeof(IEnumerable<WeatherForecast>))]
         public IEnumerable<WeatherForecast> Get()
         {
             var rng = new Random();
