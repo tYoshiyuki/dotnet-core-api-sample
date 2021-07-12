@@ -12,8 +12,19 @@
     /// </example>
     public class ValuesResponse
     {
+        /// <summary>
+        /// RequestId
+        /// </summary>
         public string RequestId { get; set; }
+
+        /// <summary>
+        /// UserAgent
+        /// </summary>
         public string UserAgent { get; set; }
+
+        /// <summary>
+        /// Value
+        /// </summary>
         public string Value { get; set; }
     }
 }
