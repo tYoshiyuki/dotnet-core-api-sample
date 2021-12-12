@@ -2,7 +2,7 @@
 ASP.NET Core の Web API のサンプル
 
 ## Feature
-- .NET5
+- .NET6
 - ASP.NET Core
 - NSwag
 

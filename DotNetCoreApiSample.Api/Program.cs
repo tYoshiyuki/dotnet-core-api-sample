@@ -1,32 +1,58 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using System.Linq;
+using DotNetCoreApiSample.Api.Middleware;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using NSwag;
+using NSwag.Generation.Processors.Security;
 
-namespace DotNetCoreApiSample.Api
+var builder = WebApplication.CreateBuilder(args);
+
+// Add services to the container.
+builder.Host.ConfigureServices(services =>
 {
-    /// <summary>
-    /// Program
-    /// </summary>
-    public class Program
+    services.AddScoped<IMyContextAccessor, MyContextAccessor>();
+    services.AddControllers();
+    services.AddOpenApiDocument(document =>
     {
-        /// <summary>
-        /// Main
-        /// </summary>
-        /// <param name="args"></param>
-        public static void Main(string[] args)
+        document.AddSecurity("Bearer", Enumerable.Empty<string>(), new OpenApiSecurityScheme
         {
-            CreateHostBuilder(args).Build().Run();
-        }
+            Type = OpenApiSecuritySchemeType.Http,
+            Scheme = JwtBearerDefaults.AuthenticationScheme,
+            BearerFormat = "JWT",
+            Description = "Type into the textbox: {your JWT token}."
+        });
 
-        /// <summary>
-        /// CreateHostBuilder
-        /// </summary>
-        /// <param name="args"></param>
-        /// <returns></returns>
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
-    }
+        document.OperationProcessors.Add(
+            new AspNetCoreOperationSecurityScopeProcessor("Bearer"));
+    });
+});
+
+var app = builder.Build();
+
+// Configure the HTTP request pipeline.
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
+    app.UseOpenApi();
+    app.UseSwaggerUi3(config =>
+    {
+        config.Path = "/swagger";
+    });
+    app.UseReDoc(config =>
+    {
+        config.Path = "/redoc";
+    });
 }
+
+app.UseHttpsRedirection();
+
+app.UseAuthorization();
+
+app.MapControllers();
+
+app.UseMyContext();
+
+app.Run();
