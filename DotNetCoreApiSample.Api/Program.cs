@@ -47,6 +47,11 @@ if (app.Environment.IsDevelopment())
     });
 }
 
+app.UseExceptionHandler(configure =>
+{
+    configure.UseApiExceptionHandler();
+});
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

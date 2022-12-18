@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq.Expressions;
 using System.Net;
 using DotNetCoreApiSample.Api.Middleware;
 using Microsoft.AspNetCore.Mvc;
@@ -38,6 +39,18 @@ namespace DotNetCoreApiSample.Api.Controllers
                 RequestId = myContext.RequestId,
                 Value = new Random().Next(0, 10).ToString()
             };
+        }
+
+        /// <summary>
+        /// サンプルのため例外を発生させます。
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
+        [Route("Exception")]
+        [HttpGet]
+        public IActionResult Exception()
+        {
+            throw new Exception("This is sample error!");
         }
     }
 }
