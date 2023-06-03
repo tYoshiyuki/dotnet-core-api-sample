@@ -42,6 +42,23 @@ namespace DotNetCoreApiSample.Api.Controllers
         }
 
         /// <summary>
+        /// サンプルデータを取得します。
+        /// </summary>
+        /// <param name="request"><see cref="ValuesRequest"/></param>
+        /// <returns></returns>
+        [HttpPost]
+        [SwaggerResponse(HttpStatusCode.OK, typeof(ValuesResponse))]
+        public ValuesResponse Post(ValuesRequest request)
+        {
+            return new()
+            {
+                UserAgent = myContext.UserAgent,
+                RequestId = myContext.RequestId,
+                Value = request.SampleValue
+            };
+        }
+
+        /// <summary>
         /// サンプルのため例外を発生させます。
         /// </summary>
         /// <returns></returns>
@@ -52,5 +69,7 @@ namespace DotNetCoreApiSample.Api.Controllers
         {
             throw new Exception("This is sample error!");
         }
+
+
     }
 }
