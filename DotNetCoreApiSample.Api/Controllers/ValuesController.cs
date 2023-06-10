@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq.Expressions;
 using System.Net;
 using DotNetCoreApiSample.Api.Middleware;
 using Microsoft.AspNetCore.Mvc;
@@ -31,15 +30,16 @@ namespace DotNetCoreApiSample.Api.Controllers
         /// <returns></returns>
         [HttpGet]
         [SwaggerResponse(HttpStatusCode.OK, typeof(ValuesResponse))]
-        public ValuesResponse Get()
+        public ValuesResponse Get([FromQuery] ValuesRequest request)
         {
             return new()
             {
                 UserAgent = myContext.UserAgent,
                 RequestId = myContext.RequestId,
-                Value = new Random().Next(0, 10).ToString()
+                Value = request.SampleValue
             };
         }
+
 
         /// <summary>
         /// サンプルデータを取得します。
@@ -48,7 +48,7 @@ namespace DotNetCoreApiSample.Api.Controllers
         /// <returns></returns>
         [HttpPost]
         [SwaggerResponse(HttpStatusCode.OK, typeof(ValuesResponse))]
-        public ValuesResponse Post(ValuesRequest request)
+        public ValuesResponse Post([FromBody] ValuesRequest request)
         {
             return new()
             {

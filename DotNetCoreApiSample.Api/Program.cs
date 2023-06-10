@@ -1,8 +1,11 @@
 ﻿using System.Linq;
+using DotNetCoreApiSample.Api;
 using DotNetCoreApiSample.Api.Middleware;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using NSwag;
 using NSwag.Generation.Processors.Security;
@@ -27,6 +30,7 @@ builder.Host.ConfigureServices(services =>
         document.OperationProcessors.Add(
             new AspNetCoreOperationSecurityScopeProcessor("Bearer"));
     });
+    services.TryAddEnumerable(ServiceDescriptor.Transient<IApiDescriptionProvider, CamelCaseQueryParametersApiDescriptionProvider>());
 });
 
 var app = builder.Build();
