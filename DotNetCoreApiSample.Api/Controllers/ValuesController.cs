@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Net;
-using DotNetCoreApiSample.Api.Middleware;
+using DotNetCoreApiSample.Api.Middleware.MyContext;
 using DotNetCoreApiSample.Api.Models;
 using Microsoft.AspNetCore.Mvc;
 using NSwag.Annotations;
@@ -14,7 +14,7 @@ namespace DotNetCoreApiSample.Api.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        private readonly MyContext myContext;
+        private readonly MyContextModel myContextModel;
 
         /// <summary>
         /// コンストラクタ
@@ -22,7 +22,7 @@ namespace DotNetCoreApiSample.Api.Controllers
         /// <param name="contextAccessor"></param>
         public ValuesController(IMyContextAccessor contextAccessor)
         {
-            this.myContext = contextAccessor.Context;
+            this.myContextModel = contextAccessor.Context;
         }
 
         /// <summary>
@@ -35,8 +35,8 @@ namespace DotNetCoreApiSample.Api.Controllers
         {
             return new()
             {
-                UserAgent = myContext.UserAgent,
-                RequestId = myContext.RequestId,
+                UserAgent = myContextModel.UserAgent,
+                RequestId = myContextModel.RequestId,
                 Value = request.SampleValue
             };
         }
@@ -53,8 +53,8 @@ namespace DotNetCoreApiSample.Api.Controllers
         {
             return new()
             {
-                UserAgent = myContext.UserAgent,
-                RequestId = myContext.RequestId,
+                UserAgent = myContextModel.UserAgent,
+                RequestId = myContextModel.RequestId,
                 Value = request.SampleValue
             };
         }

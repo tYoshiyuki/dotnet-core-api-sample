@@ -1,9 +1,9 @@
-﻿namespace DotNetCoreApiSample.Api.Middleware
+﻿namespace DotNetCoreApiSample.Api.Middleware.MyContext
 {
     /// <summary>
-    /// MyContextです。
+    /// MyContextのモデルです。
     /// </summary>
-    public class MyContext
+    public class MyContextModel
     {
         /// <summary>
         /// RequestIdです。

@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using System;
 using Microsoft.AspNetCore.Diagnostics;
 
-namespace DotNetCoreApiSample.Api.Middleware
+namespace DotNetCoreApiSample.Api.Middleware.ApiExceptionHandler
 {
     /// <summary>
     /// <see cref="ApiExceptionHandlerMiddleware"/> です。

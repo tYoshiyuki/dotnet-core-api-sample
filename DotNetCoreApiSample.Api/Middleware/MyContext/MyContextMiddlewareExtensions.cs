@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 
-namespace DotNetCoreApiSample.Api.Middleware
+namespace DotNetCoreApiSample.Api.Middleware.MyContext
 {
     /// <summary>
     /// MyContextMiddlewareExtensionsです。

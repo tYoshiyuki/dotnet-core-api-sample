@@ -1,4 +1,4 @@
-﻿namespace DotNetCoreApiSample.Api.Middleware
+﻿namespace DotNetCoreApiSample.Api.Middleware.MyContext
 {
     /// <summary>
     /// MyContextAccessorインターフェースです。
@@ -8,6 +8,6 @@
         /// <summary>
         /// MyContextです。
         /// </summary>
-        MyContext Context { get; set; }
+        MyContextModel Context { get; set; }
     }
 }

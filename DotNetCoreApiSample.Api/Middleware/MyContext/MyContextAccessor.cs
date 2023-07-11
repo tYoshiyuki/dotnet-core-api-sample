@@ -1,16 +1,16 @@
-﻿namespace DotNetCoreApiSample.Api.Middleware
+﻿namespace DotNetCoreApiSample.Api.Middleware.MyContext
 {
     /// <summary>
     /// MyContextAccessorです。
     /// </summary>
     public class MyContextAccessor : IMyContextAccessor
     {
-        private MyContext contextHolder;
+        private MyContextModel contextHolder;
 
         /// <summary>
-        /// MyContextです。
+        /// <see cref="MyContextModel"/> です。
         /// </summary>
-        public MyContext Context
+        public MyContextModel Context
         {
             get => contextHolder;
             set => contextHolder ??= value;

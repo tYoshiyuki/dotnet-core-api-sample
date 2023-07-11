@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.Net.Http.Headers;
 
-namespace DotNetCoreApiSample.Api.Middleware
+namespace DotNetCoreApiSample.Api.Middleware.MyContext
 {
     /// <summary>
     /// MyContextMiddlewareです。
@@ -28,7 +28,7 @@ namespace DotNetCoreApiSample.Api.Middleware
         /// <returns></returns>
         public async Task Invoke(HttpContext context, IMyContextAccessor contextAccessor)
         {
-            contextAccessor.Context = new MyContext
+            contextAccessor.Context = new MyContextModel
             {
                 RequestId = context.TraceIdentifier,
                 UserAgent = context.Request.Headers[HeaderNames.UserAgent]

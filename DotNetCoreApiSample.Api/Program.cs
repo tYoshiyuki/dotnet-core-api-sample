@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using DotNetCoreApiSample.Api;
-using DotNetCoreApiSample.Api.Middleware;
+using DotNetCoreApiSample.Api.Middleware.ApiExceptionHandler;
+using DotNetCoreApiSample.Api.Middleware.MyContext;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
