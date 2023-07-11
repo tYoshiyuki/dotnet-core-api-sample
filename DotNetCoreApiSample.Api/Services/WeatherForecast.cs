@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DotNetCoreApiSample.Api
+namespace DotNetCoreApiSample.Api.Services
 {
     /// <summary>
     /// WeatherForecast

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using DotNetCoreApiSample.Api.Middleware;
+using DotNetCoreApiSample.Api.Models;
 using Microsoft.AspNetCore.Mvc;
 using NSwag.Annotations;
 

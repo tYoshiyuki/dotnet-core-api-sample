@@ -1,4 +1,4 @@
-﻿namespace DotNetCoreApiSample.Api
+﻿namespace DotNetCoreApiSample.Api.Models
 {
     /// <summary>
     /// ValuesResponse

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using NSwag.Annotations;
+using DotNetCoreApiSample.Api.Services;
 
 namespace DotNetCoreApiSample.Api.Controllers
 {
