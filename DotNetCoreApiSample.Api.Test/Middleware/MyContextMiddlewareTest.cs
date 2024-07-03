@@ -19,7 +19,7 @@ namespace DotNetCoreApiSample.Api.Test.Middleware
         public async Task Invoke_正常系()
         {
             // Arrange
-            var middleware = new MyContextMiddleware(x => Task.FromResult(0));
+            var middleware = new MyContextMiddleware(x => Task.CompletedTask);
             var httpContext = new DefaultHttpContext();
             var accessor = new MyContextAccessor();
 

@@ -12,24 +12,20 @@ namespace DotNetCoreApiSample.Api.Controllers
     /// <summary>
     /// WeatherForecastController です。
     /// </summary>
+    /// <remarks>
+    /// コンストラクタ
+    /// </remarks>
+    /// <param name="logger"></param>
     [ApiController]
     [Route("[controller]")]
-    public class WeatherForecastController : ControllerBase
+    public class WeatherForecastController(ILogger<WeatherForecastController> logger) : ControllerBase
     {
-        private static readonly string[] summaries = {
+        private static readonly string[] summaries =
+        [
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
+        ];
 
-        private readonly ILogger<WeatherForecastController> logger;
-
-        /// <summary>
-        /// コンストラクタ
-        /// </summary>
-        /// <param name="logger"></param>
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
-        {
-            this.logger = logger;
-        }
+        private readonly ILogger<WeatherForecastController> logger = logger;
 
         /// <summary>
         /// WeatherForecast を取得します。
@@ -40,6 +36,9 @@ namespace DotNetCoreApiSample.Api.Controllers
         public IEnumerable<WeatherForecast> Get()
         {
             var rng = new Random();
+
+            logger.LogInformation(rng.ToString());
+
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
                 Date = DateTime.Now.AddDays(index),

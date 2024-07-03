@@ -10,20 +10,15 @@ namespace DotNetCoreApiSample.Api.Controllers
     /// <summary>
     /// ValuesController です。
     /// </summary>
+    /// <remarks>
+    /// コンストラクタ
+    /// </remarks>
+    /// <param name="contextAccessor"></param>
     [Route("[controller]")]
     [ApiController]
-    public class ValuesController : ControllerBase
+    public class ValuesController(IMyContextAccessor contextAccessor) : ControllerBase
     {
-        private readonly MyContextModel myContextModel;
-
-        /// <summary>
-        /// コンストラクタ
-        /// </summary>
-        /// <param name="contextAccessor"></param>
-        public ValuesController(IMyContextAccessor contextAccessor)
-        {
-            this.myContextModel = contextAccessor.Context;
-        }
+        private readonly MyContextModel myContextModel = contextAccessor.Context;
 
         /// <summary>
         /// サンプルデータを取得します。
